@@ -1,0 +1,107 @@
+.facebook-header-icon {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-start;
+}
+
+.header {
+    background: white;
+}
+
+.facebook-header-left {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    align-items: center;
+}
+
+.header-inner {
+    /* background: white; */
+    padding: 12px 15px 12px 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.home-middle {
+    /* padding-right: 20px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.home-icon {
+    cursor: pointer;
+
+    padding: 5px;
+}
+
+.notification-icon {
+    cursor: pointer;
+
+    padding: 5px;
+}
+
+.message-icon {
+    cursor: pointer;
+
+    padding: 5px;
+}
+
+.logo-area {
+    max-width: 100px !important;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.logo-area svg {
+    width: 100%;
+    max-width: 100px;
+    height: auto;
+}
+
+.search-form:active {
+    box-shadow: none;
+    overflow: none
+}
+
+@media screen and (max-width: 767px) {
+    .search-form {
+        display: none !important;
+    }
+}
+
+.user-img-header {
+    max-width: 28px;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.user-img-header img {
+    max-width: 28px;
+    border-radius: 25px;
+}
+
+.search-icon {
+    position: relative;
+    right: 146px;
+    top: 5px;
+}
+
+.message-user {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    align-items: center;
+}
+
+.message-list {
+    width: 100%;
+    max-width: 345px;
+    background: #dfdfdf;
+    padding: 15px;
+    border-radius: 5px;
+    position: absolute;
+    right: 466px;
+}

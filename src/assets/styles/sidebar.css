@@ -1,0 +1,48 @@
+.sidebar {
+    max-width: 650px;
+    overflow: hidden;
+    background: #ffff;
+
+    border-radius: 10px
+}
+
+.user-icon {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    padding-top: 20px;
+}
+
+.friend-img img {
+    max-width: 50px;
+    border-radius: 25px;
+    border: 2px solid green;
+}
+
+h3.friend-list-title {
+    font-size: 22px;
+}
+
+.friend {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 0px;
+    cursor: pointer;
+}
+
+.friend-img img {
+    max-width: 50px;
+    border-radius: 25px;
+}
+
+.friend-name h4 {
+    font-size: 13px;
+}
+
+.friends {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+}
