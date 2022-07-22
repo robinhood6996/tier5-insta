@@ -136,3 +136,11 @@ h4.commenter-name {
 .post-save {
     cursor: pointer;
 }
+
+img.post-img {
+    width: 100%;
+}
+
+.comment-summary {
+    cursor: pointer;
+}
