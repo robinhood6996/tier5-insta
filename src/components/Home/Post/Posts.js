@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Post from './Post';
 
-const Posts = () => {
+const Posts = ({ currentUser }) => {
     const [posts, setPosts] = useState()
 
     useEffect(() => {
@@ -21,7 +21,7 @@ const Posts = () => {
                     <div className="posts ">
                         {
                             posts?.map(post => {
-                                return <Post post={post} />
+                                return <Post key={post?._id} post={post} currentUser={currentUser} />
                             })
                         }
 

@@ -1,15 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import userImg from '../../../assets/img/user.jpg';
 import postImg from '../../../assets/img/post.jpg';
 import { FiThumbsUp } from 'react-icons/fi';
 import { VscComment } from 'react-icons/vsc';
 import { RiShareForwardLine } from 'react-icons/ri';
 import { BsThreeDots } from 'react-icons/bs';
-const Post = ({ post }) => {
+const Post = ({ post, currentUser }) => {
     const [showComment, setShowComment] = useState(false);
     const [userisLiked, setUserIsLiked] = useState(false);
     const [comments, setComments] = useState([]);
-    console.log('post', post);
+    const [commentText, setCommentText] = useState(null);
+    const commentRef = useRef()
+    console.log('object', currentUser);
+    useEffect(() => {
+        setComments(post?.comments)
+    }, [post]);
+
+    const postComment = () => {
+        if (!commentText.length) {
+            return
+        } else {
+            let makeComment = { user: {} };
+            makeComment.user.name = currentUser?.name;
+            makeComment.user.profile_picture = currentUser?.profile_picture;
+            makeComment.text = commentText;
+            setComments(prevComments => [...prevComments, makeComment])
+            commentRef.current.value = ''
+        }
+
+    }
+
     return (
         <>
             <div className="post mx-auto mb-3">
@@ -88,32 +108,48 @@ const Post = ({ post }) => {
                         <div className="comment-summary" onClick={() => {
                             setShowComment(!showComment)
                         }}>
-                            <p>{showComment ? 'Hide Comment' : 'View All 2 Comment'}</p>
+                            <p>{showComment ? 'Hide Comment' : `View All ${comments?.length} Comment`}</p>
                         </div>
 
                         {/* Comment box  */}
                         <div className={showComment ? 'comment-area d-block' : 'comment-area d-none'}>
                             <hr />
-                            <div className="post-comment">
-                                <div className="user-img me-2">
-                                    <img src={userImg} alt="" />
-                                </div>
-                                <div className="write w-100">
-                                    <input type="text" placeholder='Write your comment' className='w-100 border-0 write-comment-box' name="" id="" />
-                                </div>
-                            </div>
-
-                            <div className="comment mt-3 d-flex justify-content-start">
-                                <div className="user-img-commenter me-2">
-                                    <img src={userImg} alt="" />
-                                </div>
-                                <div className="comment-content">
-                                    <div>
-                                        <h4 className='commenter-name'>Rafayet Hossain</h4>
-                                        <p className='comment-text'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit, dolorem.</p>
+                            {
+                                showComment &&
+                                <div>
+                                    <div className="post-comment">
+                                        <div className="user-img me-2">
+                                            <img src={userImg} alt="" />
+                                        </div>
+                                        <div className="write w-100">
+                                            <input type="text" onKeyUp={(e) => {
+                                                if (e.key === 'Enter') {
+                                                    postComment()
+                                                } else {
+                                                    setCommentText(e.target.value)
+                                                }
+                                            }} ref={commentRef} defaultValue={commentText} placeholder='Write your comment' className='w-100 border-0 write-comment-box' name="" id="" />
+                                        </div>
                                     </div>
+
+                                    {
+                                        comments.map((comment, index) => {
+                                            return <div className="comment mt-3 d-flex justify-content-start" key={index}>
+                                                <div className="user-img-commenter me-2">
+                                                    <img src={comment?.user?.profile_picture} alt="" />
+                                                </div>
+                                                <div className="comment-content">
+                                                    <div>
+                                                        <h4 className='commenter-name'>{comment?.user?.name}</h4>
+                                                        <p className='comment-text'>{comment?.text}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        })
+                                    }
                                 </div>
-                            </div>
+
+                            }
                         </div>
                     </div>
                 </div>

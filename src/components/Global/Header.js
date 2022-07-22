@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Container, Form, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import logo from '../../assets/logo.png';
 import userImg from '../../assets/img/user.jpg'
-const Header = () => {
+const Header = ({ currentUser }) => {
+    const [showmessage, setShowMessage] = useState(false);
     return (
         <div className='header'>
             <section className='container'>
@@ -31,7 +32,9 @@ const Header = () => {
                             </svg>
 
                         </div>
-                        <div className='message-icon'>
+                        <div className='message-icon' onClick={() => {
+                            setShowMessage(!showmessage)
+                        }}>
                             <svg viewBox="0 0 28 28" alt="" class="a8c37x1j ms05siws l3qrxjdp b7h9ocf4 rs22bh7c" fill="currentColor"
                                 height="28" width="28">
                                 <path d="M14 2.042c6.76 0 12 4.952 12 11.64S20.76 25.322 14 25.322a13.091 13.091 0 0 1-3.474-.461.956 .956 0 0 0-.641.047L7.5 25.959a.961.961 0 0 1-1.348-.849l-.065-2.134a.957.957 0 0 0-.322-.684A11.389 11.389 0 0 1 2 13.682C2 6.994 7.24 2.042 14 2.042ZM6.794 17.086a.57.57 0 0 0 .827.758l3.786-2.874a.722.722 0 0 1 .868 0l2.8 2.1a1.8 1.8 0 0 0 2.6-.481l3.525-5.592a.57.57 0 0 0-.827-.758l-3.786 2.874a.722.722 0 0 1-.868 0l-2.8-2.1a1.8 1.8 0 0 0-2.6.481Z">
@@ -46,7 +49,7 @@ const Header = () => {
                         </div>
 
                         <div className="user-img-header">
-                            <img src={userImg} alt="" />
+                            <img src={currentUser?.profile_picture} alt="" />
                         </div>
 
 
@@ -60,15 +63,28 @@ const Header = () => {
 
                     {/* </div> */}
                 </div>
-                <div className="message-list">
+                <div className={showmessage ? 'message-list d-block' : 'message-list d-none'}>
                     <div className="messages">
                         <div className="message">
                             <div className="message-user">
                                 <div className="user-img-header">
-                                    <img src={userImg} alt="" />
+                                    <img src={'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80'} alt="" />
                                 </div>
                                 <div className="user-name">
-                                    <h6>Robinhood</h6>
+                                    <h6>Adam Smith</h6>
+                                </div>
+                            </div>
+                            <div className="message-text">
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                        </div>
+                        <div className="message">
+                            <div className="message-user">
+                                <div className="user-img-header">
+                                    <img src={currentUser?.profile_picture} alt="" />
+                                </div>
+                                <div className="user-name">
+                                    <h6>Sj Khan</h6>
                                 </div>
                             </div>
                             <div className="message-text">

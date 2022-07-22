@@ -46,3 +46,11 @@ h3.friend-list-title {
     justify-content: flex-start;
     gap: 15px;
 }
+
+.online-fiends {
+    overflow-x: scroll;
+}
+
+.online-fiends::-webkit-scrollbar {
+    display: none
+}
